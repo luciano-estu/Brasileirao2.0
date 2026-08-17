@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7A0 - Monte seu time</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><b>7A0</b><span>Monte seu time • Solo + Amigos</span></header>
+
+<main>
+<section id="home" class="screen">
+  <div class="card hero">
+    <h1>⚽ 7A0</h1>
+    <p>Escolha o modo de jogo.</p>
+    <button class="primary" onclick="startSolo()">🎮 Modo Solo</button>
+    <button onclick="openFriends()">👥 Modo Amigos</button>
+  </div>
+</section>
+
+<section id="friends" class="screen hidden">
+  <div class="card">
+    <h2>👥 Modo Amigos</h2>
+    <button class="primary" onclick="createRoom()">Criar sala</button>
+    <input id="roomCode" placeholder="Código da sala">
+    <button class="primary" onclick="joinRoom()">Entrar</button>
+    <p id="roomStatus">Desconectado.</p>
+    <button onclick="showScreen('home')">← Voltar</button>
+  </div>
+</section>
+
+<section id="build" class="screen hidden">
+  <div class="card">
+    <h2>🎲 Montagem</h2>
+    <label>Formação</label>
+    <select id="formation"></select>
+    <button id="drawButton" class="primary" onclick="drawClub()">🎲 Sortear clube</button>
+    <div id="clubBox">Nenhum clube sorteado</div>
+    <p id="instruction">Primeiro sorteie um clube.</p>
+  </div>
+
+  <div class="card">
+    <h2>👥 Jogadores</h2>
+    <div id="players">Sorteie um clube.</div>
+  </div>
+
+  <div class="card">
+    <h2>🏟️ Seu time</h2>
+    <p id="placementInfo">Depois de escolher um jogador, toque na posição correta.</p>
+    <div id="field"></div>
+    <div class="stats">
+      <span>Jogadores: <b id="playerCount">0/11</b></span>
+      <span>OVR: <b id="teamOvr">0</b></span>
+    </div>
+    <button id="readyButton" class="primary" disabled onclick="confirmTeam()">✅ Confirmar time</button>
+    <button onclick="resetBuilder()">🔄 Reiniciar</button>
+  </div>
+</section>
+
+<section id="league" class="screen hidden">
+  <div class="card">
+    <h2>🏆 Campeonato</h2>
+    <p>Rodada <b id="round">0/38</b></p>
+    <button class="primary" onclick="playRound()">⚽ Próxima rodada</button>
+    <button onclick="simulateAll()">⏩ Simular restante</button>
+  </div>
+  <div class="card"><h2>⚽ Resultado</h2><div id="lastResult">Nenhum jogo.</div></div>
+  <div class="card"><h2>📊 Classificação</h2><div id="table"></div></div>
+  <div class="card"><h2>🥇 Artilharia</h2><div id="scorers"></div></div>
+</section>
+
+<section id="match" class="screen hidden">
+  <div class="card">
+    <h2>⚔️ Partida entre amigos</h2>
+    <p id="friendStatus">Aguardando os dois times.</p>
+    <p>Meu OVR: <b id="myOvr">0</b> • Amigo: <b id="friendOvr">0</b></p>
+    <button id="friendPlay" class="primary" disabled onclick="playFriendMatch()">⚽ Jogar partida</button>
+    <div id="friendResult"></div>
+  </div>
+</section>
+</main>
+
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
